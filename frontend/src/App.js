@@ -5,11 +5,29 @@ import './App.css';
 
 require('dotenv').config()
 
+function detectCodespacesApiBase() {
+  try {
+    const { protocol, host } = window.location;
+    // Codespaces hosts look like: 3000-<id>.<domain>
+    if (host.includes('-') && (host.endsWith('.github.dev') || host.endsWith('.app.github.dev') || host.endsWith('githubpreview.dev'))) {
+      const firstDash = host.indexOf('-');
+      const prefix = host.substring(0, firstDash);
+      const rest = host.substring(firstDash + 1);
+      if (/^\d+$/.test(prefix)) {
+        return `${protocol}//8000-${rest}`;
+      }
+    }
+  } catch (e) {}
+  return '';
+}
+
+const API_BASE = (process.env.REACT_APP_API_BASE_URL || detectCodespacesApiBase()).replace(/\/$/, '');
+
 function handleSubmit(event) {
   const text = document.querySelector('#char-input').value
 
   axios
-    .get(`/char_count?text=${text}`).then(({data}) => {
+    .get(`${API_BASE}/char_count?text=${encodeURIComponent(text)}`).then(({data}) => {
       document.querySelector('#char-count').textContent = `${data.count} characters!`
     })
     .catch(err => console.log(err))

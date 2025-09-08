@@ -1,0 +1,31 @@
+{
+  "name": "Improved Fishstick (Codespaces)",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
+  },
+  "forwardPorts": [3000, 8000],
+  "portsAttributes": {
+    "3000": { "label": "React App", "elevateIfNeeded": true },
+    "8000": { "label": "Django API", "elevateIfNeeded": true }
+  },
+  "postCreateCommand": "pip install -r backend/requirements/development.txt && cd frontend && npm install --legacy-peer-deps",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
