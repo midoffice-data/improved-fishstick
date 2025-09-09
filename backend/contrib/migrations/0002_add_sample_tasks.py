@@ -59,7 +59,7 @@ def remove_sample_tasks(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('contrib', '0001_initial'),  # Depends on the Task model creation
+        ('contrib', '0001_initial'),
     ]
 
     operations = [
