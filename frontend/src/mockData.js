@@ -1,4 +1,3 @@
-// Mock data for testing UserCard component
 export const mockUsers = [
   {
     id: 1,
