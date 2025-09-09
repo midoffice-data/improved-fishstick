@@ -13,7 +13,7 @@
     "3000": { "label": "React App", "elevateIfNeeded": true },
     "8000": { "label": "Django API", "elevateIfNeeded": true }
   },
-  "postCreateCommand": "pip install -r backend/requirements/development.txt && cd frontend && npm install --legacy-peer-deps",
+  "postCreateCommand": "python3 -m venv .venv && . .venv/bin/activate && pip install -r backend/requirements/development.txt && cd frontend && npm install --legacy-peer-deps",
   "customizations": {
     "vscode": {
       "settings": {
