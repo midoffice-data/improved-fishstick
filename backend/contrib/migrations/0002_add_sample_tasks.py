@@ -45,7 +45,6 @@ def create_sample_tasks(apps, schema_editor):
         }
     ]
     
-    # Create tasks in the database
     for task_data in sample_tasks:
         Task.objects.create(**task_data)
 
